@@ -1,0 +1,1385 @@
+# PROJECT PROMPT: AWS VPC PEERING STUDENT PROJECT APPLICATION
+
+## 1. Project Overview
+
+Act as a senior full-stack developer, AWS Cloud Architect, UI/UX designer, and technical project mentor.
+
+I want you to develop a complete, professional, responsive web application based on the attached PDF:
+
+**EWB Cloud Labs – AWS VPC Peering Student Project Workbook**
+
+Read and understand the entire PDF before starting development.
+
+The application must help students complete the AWS VPC Peering project step by step, understand AWS networking concepts, track their progress, record AWS resource information, validate their configuration, collect screenshots, prepare their final project report, and complete AWS resource cleanup.
+
+The application should follow the actual architecture, IP addresses, resource names, security rules, routes, validation procedures, submission requirements, and evaluation criteria specified in the PDF.
+
+Do not create a generic AWS dashboard.
+
+Build a functional educational project application specifically for this AWS VPC Peering project.
+
+---
+
+## 2. Application Name
+
+EWB AWS VPC Peering Lab
+
+Subtitle:
+
+Learn. Elevate. Empower.
+
+Project title:
+
+AWS VPC Peering – Private Network Connectivity
+
+---
+
+## 3. Technology Stack
+
+Build a modern web application using:
+
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Lucide React icons
+- React Router
+- Recharts for dashboard charts where useful
+- Firebase Authentication for user authentication
+- Cloud Firestore for persistent project data
+- Firebase Storage for screenshots and project evidence
+- jsPDF or an equivalent reliable PDF-generation library for report export
+
+Use the latest stable and compatible package versions supported by the environment.
+
+If Firebase credentials are unavailable, implement a fully functional local demo mode using browser local storage.
+
+The application must run without requiring Firebase configuration during the initial demonstration.
+
+Keep the application architecture modular, maintainable, and suitable for future deployment.
+
+---
+
+## 4. Application Design
+
+Create a professional AWS-inspired cloud lab interface.
+
+Design requirements:
+
+- Modern SaaS dashboard design
+- Dark navy and white interface
+- AWS-inspired orange accent color
+- Clean typography
+- Responsive sidebar navigation
+- Responsive desktop, tablet, and mobile layouts
+- Professional cards and tables
+- Progress indicators
+- Interactive diagrams
+- Clear success, warning, and error states
+- Accessible forms and buttons
+- Loading states and empty states
+- Consistent spacing and visual hierarchy
+
+Avoid an overly colorful or childish design.
+
+The application should look like a real cloud engineering education platform.
+
+---
+
+## 5. Dashboard
+
+Create a dashboard showing the student's AWS VPC Peering project progress.
+
+Display:
+
+1. Project title
+2. Student name
+3. Batch
+4. AWS Region
+5. Project completion percentage
+6. Total completed tasks
+7. Pending tasks
+8. Failed validation checks
+9. Evidence collected
+10. Report generation status
+
+Create dashboard cards for:
+
+- Architecture
+- Network configuration
+- Security groups
+- EC2 instances
+- VPC peering
+- Routing
+- Connectivity testing
+- Documentation
+- Cleanup
+
+Show the overall project progress using a progress bar.
+
+Provide a recent activity section.
+
+Provide a quick-access button:
+
+Continue Project
+
+The dashboard must calculate progress dynamically from the student's actual saved checklist data.
+
+Do not hardcode project completion percentages.
+
+---
+
+## 6. Student Profile and Project Setup
+
+Create a project initialization page.
+
+Fields:
+
+- Student name
+- Batch
+- Project title
+- AWS account alias or optional account identifier
+- AWS Region
+- Project start date
+- Project completion date
+
+Default project title:
+
+AWS VPC Peering
+
+Default AWS Region:
+
+ap-south-1 (Mumbai)
+
+Allow students to edit their project details.
+
+Do not request AWS passwords, access keys, secret keys, private SSH keys, or other credentials.
+
+Display a security warning explaining that AWS credentials must never be uploaded into the application.
+
+---
+
+## 7. Project Architecture
+
+Implement an interactive AWS network architecture diagram.
+
+The diagram must represent the exact architecture in the PDF.
+
+### VPC A
+
+Name:
+
+ewb-vpc-a
+
+CIDR:
+
+10.10.0.0/16
+
+Components:
+
+Internet Gateway:
+
+ewb-igw-a
+
+Public subnet:
+
+ewb-a-public
+
+CIDR:
+
+10.10.1.0/24
+
+Bastion EC2:
+
+ewb-bastion
+
+Private IP:
+
+10.10.1.10
+
+Public IP:
+
+Student-entered actual public IPv4 address
+
+Private subnet:
+
+ewb-a-private
+
+CIDR:
+
+10.10.2.0/24
+
+Application EC2:
+
+ewb-app-a
+
+Private IP:
+
+10.10.2.10
+
+### VPC B
+
+Name:
+
+ewb-vpc-b
+
+CIDR:
+
+10.20.0.0/16
+
+Private subnet:
+
+ewb-b-private
+
+CIDR:
+
+10.20.1.0/24
+
+Application EC2:
+
+ewb-app-b
+
+Private IP:
+
+10.20.1.10
+
+VPC B must not have an internet gateway.
+
+App-A and App-B must not have public IPv4 addresses.
+
+### VPC Peering
+
+Name:
+
+ewb-a-b-peer
+
+Connection:
+
+VPC A ↔ VPC B
+
+Represent the peering connection between the two VPCs.
+
+Show the connection status:
+
+- Not created
+- Pending acceptance
+- Active
+- Failed
+
+Allow students to update the status manually based on their actual AWS console results.
+
+Use an interactive architecture diagram where clicking a resource opens its details and configuration.
+
+Show the following communication path:
+
+Laptop → Bastion → App-A
+
+Laptop → Bastion → App-B
+
+App-A ↔ App-B through private IPv4 addresses and the VPC peering connection.
+
+Clearly explain that VPC peering does not provide internet access to VPC B through VPC A.
+
+---
+
+## 8. Resource Inventory
+
+Create a resource inventory page.
+
+Display resources in a table.
+
+Columns:
+
+- Resource name
+- Resource type
+- VPC
+- Subnet
+- CIDR or private IP
+- Actual AWS resource ID
+- Status
+- Notes
+
+Include:
+
+- ewb-vpc-a
+- ewb-vpc-b
+- ewb-a-public
+- ewb-a-private
+- ewb-b-private
+- ewb-igw-a
+- ewb-rt-a-public
+- ewb-rt-a-private
+- ewb-rt-b-private
+- ewb-sg-bastion
+- ewb-sg-app-a
+- ewb-sg-app-b
+- ewb-bastion
+- ewb-app-a
+- ewb-app-b
+- ewb-a-b-peer
+- ewb-lab
+
+Allow students to enter actual AWS resource IDs.
+
+Allow editing resource details.
+
+Display a warning if the recorded IP address differs from the project architecture.
+
+Support resource status values:
+
+- Not started
+- Creating
+- Available
+- Failed
+- Deleted
+
+Add search, filters, and export functionality.
+
+---
+
+## 9. Project Workflow
+
+Create a guided project workflow based on the PDF.
+
+Divide the project into the following stages.
+
+### Stage 1: Project Planning
+
+Tasks:
+
+- Read the project brief
+- Understand the architecture
+- Review CIDR planning
+- Confirm AWS Region
+- Review expected costs
+- Understand the security requirements
+
+Explain why the VPC CIDRs do not overlap.
+
+VPC A:
+
+10.10.0.0/16
+
+VPC B:
+
+10.20.0.0/16
+
+Explain why overlapping CIDRs prevent successful VPC peering.
+
+Include an interactive CIDR calculator.
+
+Students should be able to enter CIDRs and check whether they overlap.
+
+### Stage 2: Create VPC A
+
+Guide the student through:
+
+1. Creating ewb-vpc-a
+2. Assigning 10.10.0.0/16
+3. Creating ewb-a-public
+4. Assigning 10.10.1.0/24
+5. Creating ewb-a-private
+6. Assigning 10.10.2.0/24
+7. Creating ewb-igw-a
+8. Attaching the internet gateway
+9. Creating ewb-rt-a-public
+10. Associating the public subnet
+11. Adding the public internet route
+12. Creating ewb-rt-a-private
+13. Associating the private subnet
+14. Verifying the private route table
+
+Explain each step.
+
+Expected public route:
+
+0.0.0.0/0 → ewb-igw-a
+
+Expected private route table initially:
+
+10.10.0.0/16 → local
+
+Do not add a default internet route to the private subnet.
+
+Provide a checklist and evidence upload area for each checkpoint.
+
+### Stage 3: Create VPC B
+
+Guide the student through:
+
+1. Creating ewb-vpc-b
+2. Assigning 10.20.0.0/16
+3. Creating ewb-b-private
+4. Assigning 10.20.1.0/24
+5. Creating ewb-rt-b-private
+6. Associating the private subnet
+7. Verifying the local route
+8. Confirming public IPv4 auto-assignment is disabled
+
+Explain why VPC B does not need an internet gateway.
+
+### Stage 4: Security Groups
+
+Create a security group configuration table.
+
+Use the exact inbound rules from the PDF.
+
+#### ewb-sg-bastion
+
+Inbound:
+
+SSH
+
+Protocol:
+
+TCP
+
+Port:
+
+22
+
+Source:
+
+Student's current public IPv4 address /32
+
+Explain why SSH must not be exposed to 0.0.0.0/0.
+
+#### ewb-sg-app-a
+
+Inbound rule 1:
+
+SSH
+
+Protocol:
+
+TCP
+
+Port:
+
+22
+
+Source:
+
+10.10.1.10/32
+
+Inbound rule 2:
+
+ICMP Echo Request
+
+Source:
+
+10.20.1.10/32
+
+ICMP type:
+
+8
+
+ICMP code:
+
+0
+
+#### ewb-sg-app-b
+
+Inbound rule 1:
+
+SSH
+
+Protocol:
+
+TCP
+
+Port:
+
+22
+
+Source:
+
+10.10.1.10/32
+
+Inbound rule 2:
+
+ICMP Echo Request
+
+Source:
+
+10.10.2.10/32
+
+ICMP type:
+
+8
+
+ICMP code:
+
+0
+
+Explain that SSH uses port 22, while the private IP belongs in the source field.
+
+Explain that security groups are stateful.
+
+Keep the default allow-all outbound rules for this beginner lab.
+
+Assume default allow-all network ACLs.
+
+Include a security validation checklist.
+
+Warn students against using unrestricted SSH or ICMP inbound rules.
+
+### Stage 5: Launch EC2 Instances
+
+Guide students through launching three instances.
+
+Use:
+
+Amazon Linux 2023
+
+Instructor-approved small x86 instance type, such as t3.micro
+
+Key pair:
+
+ewb-lab
+
+#### Bastion
+
+Name:
+
+ewb-bastion
+
+VPC:
+
+ewb-vpc-a
+
+Subnet:
+
+ewb-a-public
+
+Private IP:
+
+10.10.1.10
+
+Public IP:
+
+Enabled
+
+Security group:
+
+ewb-sg-bastion
+
+#### App-A
+
+Name:
+
+ewb-app-a
+
+VPC:
+
+ewb-vpc-a
+
+Subnet:
+
+ewb-a-private
+
+Private IP:
+
+10.10.2.10
+
+Public IP:
+
+Disabled
+
+Security group:
+
+ewb-sg-app-a
+
+#### App-B
+
+Name:
+
+ewb-app-b
+
+VPC:
+
+ewb-vpc-b
+
+Subnet:
+
+ewb-b-private
+
+Private IP:
+
+10.20.1.10
+
+Public IP:
+
+Disabled
+
+Security group:
+
+ewb-sg-app-b
+
+Allow students to record:
+
+- Instance ID
+- Private IP
+- Public IP where applicable
+- Availability Zone
+- Instance type
+- Instance state
+- Security group
+
+Provide a validation checklist confirming that App-A and App-B have no public IPv4 addresses.
+
+Never request the private SSH key itself.
+
+### Stage 6: SSH Administration
+
+Create an SSH configuration helper.
+
+Generate the following configuration template:
+
+Host ewb-bastion
+    HostName BASTION_PUBLIC_IP
+    User ec2-user
+    IdentityFile ~/.ssh/ewb-lab.pem
+    IdentitiesOnly yes
+
+Host ewb-app-a
+    HostName 10.10.2.10
+    User ec2-user
+    IdentityFile ~/.ssh/ewb-lab.pem
+    IdentitiesOnly yes
+    ProxyJump ewb-bastion
+
+Host ewb-app-b
+    HostName 10.20.1.10
+    User ec2-user
+    IdentityFile ~/.ssh/ewb-lab.pem
+    IdentitiesOnly yes
+    ProxyJump ewb-bastion
+
+Replace BASTION_PUBLIC_IP with the student's actual public IPv4.
+
+Provide buttons to copy the SSH configuration and commands.
+
+Display these commands:
+
+ssh ewb-bastion
+
+ssh ewb-app-a
+
+ssh ewb-app-b
+
+Explain SSH ProxyJump.
+
+Explain why the private key stays on the student's laptop.
+
+Do not automatically execute SSH commands.
+
+### Stage 7: Baseline Connectivity
+
+Before establishing peering, guide the student to App-A.
+
+Command:
+
+ping -c 4 10.20.1.10
+
+Expected result:
+
+No replies.
+
+Explain that this is the baseline failure.
+
+Provide fields to record:
+
+- Test date
+- Source host
+- Destination IP
+- Actual result
+- Packet loss
+- Screenshot
+- Explanation
+
+Do not mark the test as completed until the student records their actual result.
+
+### Stage 8: Establish VPC Peering
+
+Guide students through creating:
+
+ewb-a-b-peer
+
+Requester:
+
+ewb-vpc-a
+
+Accepter:
+
+ewb-vpc-b
+
+Account:
+
+Same AWS account
+
+Region:
+
+Same AWS Region
+
+Steps:
+
+1. Create peering connection
+2. Record the peering ID
+3. Accept the request
+4. Wait until the status is Active
+5. Confirm both VPC IDs
+6. Save evidence
+
+Allow students to enter the actual pcx- connection ID.
+
+Explain that an active peering connection alone does not guarantee connectivity.
+
+### Stage 9: Route Table Configuration
+
+Create an interactive route table editor and validation system.
+
+Use the exact routing configuration from the PDF.
+
+#### ewb-rt-a-private
+
+Associated subnet:
+
+ewb-a-private
+
+Routes:
+
+10.10.0.0/16 → local
+
+10.20.0.0/16 → actual VPC peering connection ID
+
+#### ewb-rt-b-private
+
+Associated subnet:
+
+ewb-b-private
+
+Routes:
+
+10.20.0.0/16 → local
+
+10.10.0.0/16 → actual VPC peering connection ID
+
+#### ewb-rt-a-public
+
+Associated subnet:
+
+ewb-a-public
+
+Routes:
+
+10.10.0.0/16 → local
+
+0.0.0.0/0 → ewb-igw-a
+
+10.20.0.0/16 → actual VPC peering connection ID
+
+Explain:
+
+- Forward routes
+- Return routes
+- Local routes
+- Internet gateway routes
+- Peering routes
+- Longest-prefix-match routing
+
+Highlight missing routes.
+
+Display route validation status:
+
+- Correct
+- Missing
+- Incorrect target
+- Incorrect subnet association
+
+Do not assume routes exist simply because the peering connection is Active.
+
+### Stage 10: Connectivity Verification
+
+Create a testing dashboard.
+
+Include these tests.
+
+#### Test 1: Baseline Failure
+
+Source:
+
+App-A
+
+Command:
+
+ping -c 4 10.20.1.10
+
+Expected:
+
+No replies before peering and peer routes.
+
+#### Test 2: Forward Connectivity
+
+Source:
+
+App-A
+
+Command:
+
+ping -c 4 10.20.1.10
+
+Expected:
+
+4 replies
+
+0% packet loss
+
+#### Test 3: Reverse Connectivity
+
+Source:
+
+App-B
+
+Command:
+
+ping -c 4 10.10.2.10
+
+Expected:
+
+4 replies
+
+0% packet loss
+
+#### Test 4: Private SSH
+
+Source:
+
+Laptop
+
+Command:
+
+ssh ewb-app-b
+
+Expected:
+
+Successful shell access through the bastion.
+
+#### Test 5: Private Instance Isolation
+
+Confirm:
+
+App-A has no public IPv4.
+
+App-B has no public IPv4.
+
+Create a table for recording actual test results.
+
+Every test must include:
+
+- Test name
+- Source
+- Destination
+- Command
+- Expected result
+- Actual result
+- Pass or fail
+- Screenshot
+- Student explanation
+
+Use actual student-entered test results.
+
+Do not fabricate successful connectivity.
+
+### Stage 11: Controlled Failure and Recovery
+
+Create a guided experiment.
+
+Instructions:
+
+1. Remove only the App-B inbound ICMP Echo Request rule from 10.10.2.10/32.
+2. Keep the SSH rule.
+3. Run the forward ping from App-A.
+4. Record the failed connectivity.
+5. Restore the exact ICMP rule.
+6. Repeat the ping.
+7. Record the successful recovery.
+
+Display three separate test states:
+
+- Before rule removal
+- During controlled failure
+- After recovery
+
+Explain how security group rules affect communication.
+
+Require evidence for both failure and recovery.
+
+### Stage 12: Troubleshooting
+
+Create a searchable troubleshooting section.
+
+Include these problems from the workbook.
+
+Bastion SSH timeout:
+
+Check public IPv4, current source IP /32, public subnet association, and internet gateway route.
+
+App-A SSH failure:
+
+Check private IP, TCP 22 rule, bastion source IP, key pair, ec2-user, and instance state.
+
+App-B SSH failure:
+
+Check public subnet peering route, VPC B return route, App-B SSH rule, and bastion private source IP.
+
+Ping failure after acceptance:
+
+Check Active peering, route tables, correct peering ID, destination ICMP rule, and actual host IPs.
+
+Peering creation failure:
+
+Check for overlapping CIDRs, including secondary CIDRs.
+
+Permission denied:
+
+Check key pair, IdentityFile, and ec2-user.
+
+Custom ACL failure:
+
+Check both directions, ICMP, SSH, and return ephemeral ports.
+
+Provide a troubleshooting decision tree.
+
+Students should be able to mark each troubleshooting item as checked.
+
+### Stage 13: Student Deliverables
+
+Create a final submission checklist.
+
+Include:
+
+1. Cover page
+2. Student name
+3. Batch
+4. Project title
+5. AWS Region
+6. Completion date
+7. Architecture diagram
+8. Resource inventory
+9. Actual AWS resource IDs
+10. VPC CIDRs
+11. Subnet CIDRs
+12. Route table associations
+13. Peering connection status
+14. Security group inbound rules
+15. Baseline failure evidence
+16. Forward ping evidence
+17. Reverse ping evidence
+18. App-B SSH evidence
+19. Controlled failure evidence
+20. Recovery evidence
+21. Cleanup evidence
+22. Lessons learned
+
+Include a short explanation of the forward path and return path.
+
+Warn students never to include:
+
+- Private SSH keys
+- Passwords
+- AWS access keys
+- Secret tokens
+
+Generate the report using the student's actual project data.
+
+### Stage 14: Evaluation
+
+Create a grading dashboard using the exact 100-mark evaluation criteria from the PDF.
+
+Architecture, CIDRs, resource inventory:
+
+15 marks
+
+Subnets, internet gateway, correct route associations:
+
+20 marks
+
+Peering and forward/return routes:
+
+20 marks
+
+Security rules and private SSH access:
+
+20 marks
+
+Positive and negative testing evidence:
+
+15 marks
+
+Report clarity, viva, and cleanup evidence:
+
+10 marks
+
+Total:
+
+100 marks
+
+Calculate marks dynamically.
+
+Do not award marks for unverified activities.
+
+Allow instructors to review and modify marks.
+
+Display missing evidence and improvement suggestions.
+
+### Stage 15: AWS Cleanup
+
+Create a cleanup checklist.
+
+Step 1:
+
+Terminate:
+
+- ewb-bastion
+- ewb-app-a
+- ewb-app-b
+
+Step 2:
+
+Confirm lab EBS volumes and snapshots are deleted.
+
+Step 3:
+
+Release any Elastic IP created for the lab.
+
+Step 4:
+
+Remove the unused lab key pair.
+
+Step 5:
+
+Delete the peering connection.
+
+Step 6:
+
+Delete peer routes.
+
+Step 7:
+
+Delete lab security groups after network interfaces disappear.
+
+Step 8:
+
+Delete lab subnets.
+
+Step 9:
+
+Delete custom route tables.
+
+Step 10:
+
+Detach and delete ewb-igw-a.
+
+Step 11:
+
+Delete both lab VPCs.
+
+Step 12:
+
+Verify the AWS account is clear of lab resources.
+
+Step 13:
+
+Check AWS Billing for remaining chargeable resources.
+
+Allow students to upload cleanup screenshots.
+
+Display a prominent warning:
+
+AWS resources can incur charges. Complete cleanup after saving project evidence.
+
+Never automatically delete AWS resources.
+
+---
+
+## 10. Evidence Management
+
+Create an evidence management page.
+
+Students must be able to:
+
+- Upload screenshots
+- Add descriptions
+- Assign screenshots to project stages
+- Record test results
+- Preview evidence
+- Delete their own uploaded evidence
+- Organize screenshots by project stage
+
+Use Firebase Storage when configured.
+
+Use local browser storage or an appropriate local demo implementation when Firebase is unavailable.
+
+Evidence categories:
+
+- Architecture
+- VPC
+- Subnets
+- Route tables
+- Security groups
+- EC2
+- Peering
+- Connectivity
+- SSH
+- Controlled failure
+- Recovery
+- Cleanup
+
+Display missing evidence before final report generation.
+
+---
+
+## 11. PDF Report Generation
+
+Implement a complete PDF report generator.
+
+The report must use the filename:
+
+YourName_EWB_VPC_Peering.pdf
+
+Include:
+
+1. Cover page
+2. Student details
+3. Project overview
+4. Architecture diagram
+5. AWS resource inventory
+6. VPC and subnet configuration
+7. Security group rules
+8. EC2 instance details
+9. Peering connection details
+10. Route table configurations
+11. Baseline test
+12. Forward connectivity
+13. Reverse connectivity
+14. SSH connectivity
+15. Controlled failure
+16. Recovery
+17. Troubleshooting notes
+18. Lessons learned
+19. Evaluation
+20. Cleanup evidence
+
+Include actual screenshots uploaded by the student.
+
+Use proper headings, tables, page numbers, and a professional layout.
+
+Ensure the report is readable.
+
+Do not include private keys, passwords, access tokens, or other secrets.
+
+Do not invent screenshots or test results.
+
+If evidence is missing, clearly label it as missing.
+
+Provide a download button for the generated PDF.
+
+---
+
+## 12. Important Application Pages
+
+Create the following navigation pages:
+
+1. Dashboard
+2. Project Overview
+3. Architecture
+4. Resource Inventory
+5. Network Setup
+6. Security Groups
+7. EC2 Instances
+8. SSH Configuration
+9. VPC Peering
+10. Route Tables
+11. Connectivity Tests
+12. Troubleshooting
+13. Evidence
+14. Evaluation
+15. Final Report
+16. Cleanup
+17. Settings
+
+Use a persistent sidebar.
+
+Show the student's project progress in the sidebar.
+
+---
+
+## 13. Functional Requirements
+
+The application must be genuinely interactive.
+
+Implement:
+
+- Working navigation
+- Form validation
+- Editable resource information
+- Interactive architecture diagram
+- Dynamic progress calculation
+- Persistent project data
+- Searchable resource inventory
+- Route validation
+- CIDR overlap checking
+- Security rule validation
+- Test result tracking
+- Evidence upload and preview
+- PDF report generation
+- Checklist completion
+- Cleanup tracking
+- Responsive layout
+
+Do not create buttons that do nothing.
+
+Do not display fake AWS resource IDs.
+
+Do not claim that the application has connected to AWS.
+
+Students will create resources manually through the AWS Management Console and record their actual results in this application.
+
+If AWS API integration is implemented later, use secure server-side AWS SDK integration and appropriate IAM permissions.
+
+Never expose AWS credentials in frontend code.
+
+---
+
+## 14. Educational Features
+
+Add explanations for:
+
+- What is a VPC?
+- What is a subnet?
+- What is CIDR?
+- What is a route table?
+- What is an internet gateway?
+- What is a security group?
+- What is a bastion host?
+- What is VPC peering?
+- What is a private IP?
+- What is a public IP?
+- What is SSH ProxyJump?
+- What is a return route?
+- What is ICMP?
+- Why are security groups stateful?
+- Why does VPC B not have internet access?
+- Why does peering alone not guarantee connectivity?
+
+Provide short explanations, practical examples, and diagrams.
+
+Add a viva preparation section with questions and answers based on the PDF.
+
+Include:
+
+1. Why are non-overlapping CIDRs required?
+2. Why is a return route required?
+3. Why is App-B SSH allowed from the bastion private IP?
+4. Why does Active peering not guarantee successful ping?
+5. Can VPC B use VPC A's internet gateway through peering?
+6. Why should private instances not have public IPv4 addresses?
+7. Why is the ICMP rule needed?
+8. What is the purpose of the controlled failure experiment?
+9. Why is SSH ProxyJump used?
+10. Why must AWS resources be cleaned up?
+
+---
+
+## 15. Important Accuracy Requirements
+
+The attached PDF is the authoritative source for this project.
+
+Follow its terminology, IP address plan, resource names, architecture, security group rules, routes, expected results, evaluation criteria, and cleanup procedure.
+
+Do not silently change the architecture.
+
+Do not add a NAT gateway.
+
+Do not add an internet gateway to VPC B.
+
+Do not assign public IPv4 addresses to App-A or App-B.
+
+Do not change the provided private IP addresses.
+
+Do not expose SSH or ICMP to 0.0.0.0/0.
+
+Do not claim that VPC peering provides transitive connectivity.
+
+Do not claim that VPC B receives internet access through VPC A.
+
+Do not fabricate AWS resource IDs, ping results, screenshots, or project completion.
+
+If an implementation detail is not specified in the PDF, use a sensible software-development default and clearly distinguish it from the original workbook requirements.
+
+---
+
+## 16. Development Instructions
+
+Start by analyzing the complete attached PDF.
+
+Then:
+
+1. Create the application architecture.
+2. Define the TypeScript data models.
+3. Create the application folder structure.
+4. Implement the responsive UI.
+5. Implement the dashboard.
+6. Implement the architecture diagram.
+7. Implement the project workflow.
+8. Implement resource inventory.
+9. Implement route and security validation.
+10. Implement connectivity testing records.
+11. Implement evidence management.
+12. Implement evaluation.
+13. Implement PDF report generation.
+14. Implement cleanup checklist.
+15. Add realistic demo data.
+16. Add local persistence.
+17. Test the application.
+18. Fix compilation errors.
+19. Fix runtime errors.
+20. Verify all navigation and buttons.
+
+Build the application incrementally.
+
+Do not stop after generating a dashboard mockup.
+
+Do not provide only sample code or a conceptual explanation.
+
+Generate the actual working application files.
+
+If the environment supports file creation and preview, create the files and launch the application preview.
+
+If any feature cannot be implemented in the current environment, explain the limitation and provide the closest working implementation.
+
+---
+
+## 17. Final Expected Result
+
+Deliver a complete student project application that:
+
+- Looks professional
+- Works responsively
+- Follows the attached AWS VPC Peering workbook
+- Guides students through every project stage
+- Tracks real AWS configuration details
+- Validates networking configuration
+- Records real connectivity test results
+- Collects project evidence
+- Calculates project progress
+- Calculates evaluation marks
+- Generates a professional PDF report
+- Guides students through AWS cleanup
+- Stores project data persistently
+
+The final application should be suitable for a college student project demonstration, AWS networking laboratory, instructor evaluation, and viva presentation.
+
+Begin by reading the attached PDF and then implement the complete application.
+

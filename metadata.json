@@ -1,0 +1,6 @@
+{
+  "name": "CloudPeer: AWS VPC Peering Lab",
+  "description": "Comprehensive interactive AWS VPC Peering student project workbook, live network validation, architecture visualization, evidence capture, grading, and PDF report generator.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
